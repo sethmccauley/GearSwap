@@ -244,8 +244,6 @@ function init_gear_sets()
 		head="Adhemar Bonnet",neck="Sanctity Necklace",ear1="Impregnable Earring",ear2="Etiolation Earring",
 		body="Hizamaru Haramaki +2",hands=gear.HerculeanHandsTA,ring1="Defending Ring",ring2="Paguroidea Ring",
 		back="Shadow Mantle",waist="Flume Belt",legs="Hachiya Hakama +3",feet=gear.MovementFeet}
-    
-    sets.idle.Weak = sets.idle
 
 	----------------------------------
     -- Defense sets
@@ -405,8 +403,7 @@ function init_gear_sets()
 	
 	-- +22 Acc
     sets.engaged.Acc.Haste_30 = set_combine(sets.engaged.Haste_30, {neck="Moonbeam Nodowa",ring1="Patricius Ring"})
-	
-	-- +
+
     sets.engaged.Acc2.Haste_30 = set_combine(sets.engaged.Acc.Haste_30, {hands="Ryuo Tekko",ear1="Zennaroi Earring",ring2="Ramuh Ring"})
 	
     sets.engaged.Acc3.Haste_30 = set_combine(sets.engaged.Acc2.Haste_30, {waist="Olseni Belt",legs="Hizamaru Hizayoroi +2",feet="Hizamaru Sune-ate +1",})
