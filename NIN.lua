@@ -31,7 +31,6 @@ function job_setup()
 	state.MarchMode = M{['description']='March Mode', 'Trusts', '3', '7', 'Honor'}
     state.Runes = M{['description']='Runes', "Ignis", "Gelus", "Flabra", "Tellus", "Sulpor", "Unda", "Lux", "Tenebrae"}
     state.UseRune = M(false, 'Use Rune')
-	state.CapacityMode = M(false, 'Capacity Point Mantle')
 
     run_sj = player.sub_job == 'RUN' or false
 
@@ -682,18 +681,11 @@ function customize_melee_set(meleeSet)
     if state.TreasureMode.value == 'Fulltime' then
         meleeSet = set_combine(meleeSet, sets.TreasureHunter)
     end
-    --if state.CapacityMode.value then
-    --    meleeSet = set_combine(meleeSet, sets.CapacityMantle)
-    --end
     if state.Buff.Migawari and state.HybridMode.value == 'PDT' then
         meleeSet = set_combine(meleeSet, sets.buff.Migawari)
     end
     if player.equipment.sub == 'empty' then
         meleeSet = set_combine(meleeSet, sets.NoDW)
-    end
-    if player.mp < 100 and state.OffenseMode.value ~= 'Acc' then
-        -- use Rajas instead of Oneiros for normal + mid
-        meleeSet = set_combine(meleeSet, sets.Rajas)
     end
     meleeSet = set_combine(meleeSet, select_ammo())
     return meleeSet
@@ -887,9 +879,7 @@ end
 
 -- Handle notifications of general user state change.
 function job_state_change(stateField, newValue, oldValue)
-    if stateField == 'Capacity Point Mantle' then
-        gear.Back = newValue
-    elseif stateField == 'Runes' then
+    if stateField == 'Runes' then
         local msg = ''
         if newValue == 'Ignis' then
             msg = msg .. 'Increasing resistence against ICE and deals FIRE damage.'
