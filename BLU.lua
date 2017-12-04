@@ -276,7 +276,7 @@ function init_gear_sets()
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {
-        head="Dampening Tam",neck=gear.ElementalGorget,ear1="Bladeborn Earring",ear2="Steelflash Earring",
+        head="Dampening Tam",neck="Fotia Gorget",ear1="Bladeborn Earring",ear2="Steelflash Earring",
         body="Rawhide Vest",hands=gear.HerculeanHandsTA,ring1="Regal Ring",ring2="Epona's Ring",
         back=Rosmerta.DEX,waist="Fotia Belt",legs="Samnuha Tights",feet=gear.HerculeanBootsAcc}
     
@@ -680,11 +680,6 @@ function job_handle_equipping_gear(playerStatus, eventArgs)
 	if player.equipment.hands == "Assimilator's Bazubands" then
 		disable('hands')
 	end
-end
-
--- Modify the default melee set after it was constructed.
-function customize_melee_set(meleeSet)
-
 end
 
 -- Called by the 'update' self-command, for common needs.
