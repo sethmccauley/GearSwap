@@ -56,6 +56,7 @@ function user_setup()
 
     gear.ElementalObi = {name="Hachirin-no-Obi"}
 	gear.default.obi_waist = "Eschan Stone"
+	gear.TaeonChapSnap = {name="Taeon Chapeau", augments={'Mag. Evasion+8','"Snapshot"+5','"Snapshot"+5',}}
 	
     -- Additional local binds
     send_command('bind !` gs c cycle LuzafRing')
@@ -135,7 +136,7 @@ function init_gear_sets()
 
 
 	sets.precast.RA = {ammo=gear.RAbullet,
-		head="Taeon Chapeau",
+		head=gear.TaeonChapSnap,
 		body="Laksa. Frac +3",hands="Carmine Finger Gauntlets +1",
 		back=Camulus.Snap,waist="Impulse Belt",legs="Adhemar Kecks",feet="Meghanada Jambeaux +2"}
 
@@ -166,7 +167,8 @@ function init_gear_sets()
 		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
 		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
 		back=Camulus.RAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Meghanada Jambeaux +2"}
-		
+	sets.precast.WS['Split Shot'] = set_combine(sets.precast.WS['Last Stand'], {})
+	
 	sets.precast.WS['Detonator'] = {ammo=gear.WSbullet,
 		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Enervating Earring",ear2="Moonshade Earring",
 		body="Meghanada Cuirie +1",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
