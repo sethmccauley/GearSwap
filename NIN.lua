@@ -132,7 +132,7 @@ function init_gear_sets()
 
     -- Waltz (chr and vit)
 	sets.precast.Waltz = {ammo="Yamarang",
-		head="Hachiya Hatsuburi +3",neck="Unmoving Collar +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
+		head="Mummu Bonnet +1",neck="Unmoving Collar +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
 		body="Hachiya Chainmail +3",hands="Hachiya Tekko +2",ring1="Regal Ring",ring2="Petrov Ring",
 		back="Shadow Mantle",waist="Chaac Belt",legs="Hizamaru Hizayoroi +2",feet="Hachiya Kyahan +3"}
 		
@@ -173,10 +173,10 @@ function init_gear_sets()
 	
 	sets.midcast.RA = {
 		head="Mummu Bonnet +1",neck="Iskur Gorget", ear1="Enervating Earring", ear2="Neritic Earring",
-		body="Mummu Jacket +2",hands="Hachiya Tekko +2",ring1="Cacoethic Ring +1", ring2="Cacoethic Ring",
+		body="Mummu Jacket +2",hands="Hachiya Tekko +2",ring1="Cacoethic Ring +1", ring2="Regal Ring",
 		back="",waist="Eschan Stone",legs="Mummu Kecks +2",feet="Mummu Gamashes +1"}
     sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {})
-    sets.midcast.RA.TH = set_combine(sets.midcast.RA, set.TreasureHunter)
+    sets.midcast.RA.TH = set_combine(sets.midcast.RA, sets.TreasureHunter)
 
 	----------------------------------
     -- Casting
