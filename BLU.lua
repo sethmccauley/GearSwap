@@ -4,9 +4,9 @@
 
 -- Initialization function for this job file.
 function get_sets()
-    mote_include_version = 2
-    -- Load and initialize the include file.
-    include('Mote-Include.lua')
+	mote_include_version = 2
+	-- Load and initialize the include file.
+	include('Mote-Include.lua')
 end
 
 
