@@ -26,7 +26,6 @@ function job_setup()
 
 	include('Mote-TreasureHunter')
 	state.TreasureMode:set('Tag')
-
 	state.HasteMode = M{['description']='Haste Mode', 'Haste I', 'Haste II'}
 	state.MarchMode = M{['description']='March Mode', 'Trusts', '3', '7', 'Honor'}
 	state.Runes = M{['description']='Runes', "Ignis", "Gelus", "Flabra", "Tellus", "Sulpor", "Unda", "Lux", "Tenebrae"}
@@ -40,13 +39,10 @@ function job_setup()
 
 	gear.RegularAmmo = 'Seki Shuriken'
 	gear.SangeAmmo = 'Happo Shuriken'
-	gear.MovementFeet = {name="Danzo Sune-ate"}
+	gear.MovementFeet = "Danzo Sune-ate"
 	gear.DayFeet = "Danzo Sune-ate"
 	gear.NightFeet = "Hachiya Kyahan +3"
-	gear.AccAmmo = {name="Happo Shuriken"}
-	gear.AccAmmoDay = "Happo Shuriken"
-	gear.AccAmmoNight = "Happo Shuriken"
-	gear.ElementalObi = {name="Hachirin-no-Obi"}
+	gear.ElementalObi = "Hachirin-no-Obi"
 	gear.default.obi_waist = "Eschan Stone"
 	
 	update_combat_form()
@@ -987,16 +983,6 @@ function select_ammo()
 		return sets.SangeAmmo
 	else
 		return sets.RegularAmmo
-	end
-end
-
-function select_ws_ammo()
-	if world.time >= (18*60) or world.time <= (6*60) then
-	gear.AccAmmo.name = gear.AccAmmoNight
-		return sets.NightAccAmmo
-	else
-	gear.AccAmmo.name = gear.AccAmmoDay
-		return sets.DayAccAmmo
 	end
 end
 
