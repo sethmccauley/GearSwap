@@ -1,3 +1,7 @@
+state.HasteMode = M{['description']='Haste Mode', 'Haste I', 'Haste II'}
+state.MarchMode = M{['description']='March Mode', 'Trusts', '3', '7', 'Honor'}
+state.GeoMode = M{['description']='Geo Haste', 'Cornelia', 'Dunna', 'Idris'}
+
 function determine_haste_group()
    
 	classes.CustomMeleeGroups:clear()
@@ -10,9 +14,15 @@ function determine_haste_group()
 			h = h + 30
 		end
 	end
-	-- Geo Haste 30
+	-- Geo Haste 20/35/40
 	if buffactive[580] then
-		h = h + 30
+		if state.GeoMode.value == 'Cornelia' then
+			h = h + 20
+		elseif state.HasteMode.value == 'Dunna' then
+			h = h + 35.4
+		elseif state.GeoMode.value == 'Idris' then
+			h = h + 40
+		end
 	end
 	-- Mighty Guard 15
 	if buffactive[604] then
