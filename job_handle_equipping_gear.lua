@@ -9,6 +9,22 @@ function job_handle_equipping_gear(playerStatus, eventArgs)
 			enable('back')
 		end
 	end
+	
+	if lockables:contains(player.equipment.ear1) then
+		disable('ear1')
+		
+		if has_charge(player.equipment.ear1) and (not is_enchant_ready(player.equipment.ear1)) then
+			enable('ear1')
+		end
+	end
+
+	if lockables:contains(player.equipment.ear2) then
+		disable('ear2')
+		
+		if has_charge(player.equipment.ear2) and (not is_enchant_ready(player.equipment.ear2)) then
+			enable('ear2')
+		end
+	end
 		
 	if lockables:contains(player.equipment.ring1) then
 		disable('ring1')
