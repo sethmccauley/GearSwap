@@ -28,6 +28,8 @@ function job_setup()
 	state.TreasureMode:set('Tag')
 	state.HasteMode = M{['description']='Haste Mode', 'Haste I', 'Haste II'}
 	state.MarchMode = M{['description']='March Mode', 'Trusts', '3', '7', 'Honor'}
+	state.GeoMode = M{['description']='Geo Haste', 'Cornelia', 'Dunna', 'Idris'}
+	
 	state.Runes = M{['description']='Runes', "Ignis", "Gelus", "Flabra", "Tellus", "Sulpor", "Unda", "Lux", "Tenebrae"}
 	state.UseRune = M(false, 'Use Rune')
 
@@ -64,7 +66,7 @@ function user_setup()
 	state.OffenseMode:options ('Normal', 'Acc', 'Acc2', 'Acc3')
 	state.RangedMode:options('Normal', 'Acc')
 	state.WeaponskillMode:options('Normal', 'Acc')
-	state.HybridMode:options('Normal', 'PDT', 'Crit')
+	state.HybridMode:options('Normal', 'Crit', 'Multi')
 	state.CastingMode:options('Normal', 'Resistant', 'Burst')
 	state.IdleMode:options('Normal')
 	
@@ -128,7 +130,7 @@ function init_gear_sets()
 
 	-- Waltz (chr and vit)
 	sets.precast.Waltz = {ammo="Yamarang",
-		head="Mummu Bonnet +1",neck="Unmoving Collar +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
+		head="Mummu Bonnet +2",neck="Unmoving Collar +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
 		body="Hachiya Chainmail +3",hands="Hachiya Tekko +2",ring1="Regal Ring",ring2="Petrov Ring",
 		back="Shadow Mantle",waist="Chaac Belt",legs="Hizamaru Hizayoroi +2",feet="Hachiya Kyahan +3"}
 		
@@ -137,7 +139,7 @@ function init_gear_sets()
 	
     -- Set for acc on steps, since Yonin can drop acc
 	sets.precast.Step = {ammo="Yamarang",
-		head="Mummu Bonnet +1",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Dignitary's Earring",
+		head="Mummu Bonnet +2",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Dignitary's Earring",
 		body="Hachiya Chainmail +3",hands="Adhemar Wristbands +1",ring1="Cacoethic Ring +1",ring2="Regal Ring",
 		back=Andartia.DEX,waist="Olseni Belt",legs="Hachiya Hakama +3",feet="Mummu Gamashes +1"}
 		
@@ -170,7 +172,7 @@ function init_gear_sets()
 		legs="Adhemar Kecks"}
 	
 	sets.midcast.RA = {
-		head="Mummu Bonnet +1",neck="Iskur Gorget", ear1="Enervating Earring", ear2="Neritic Earring",
+		head="Mummu Bonnet +2",neck="Iskur Gorget", ear1="Enervating Earring", ear2="Neritic Earring",
 		body="Mummu Jacket +2",hands="Hachiya Tekko +2",ring1="Cacoethic Ring +1", ring2="Regal Ring",
 		waist="Eschan Stone",legs="Mummu Kecks +2",feet="Mummu Gamashes +1"}
     sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {})
@@ -192,7 +194,7 @@ function init_gear_sets()
 	-- FastRecast (A set to end in when no other specific set is built to reduce recast time)
 	sets.midcast.FastRecast = {
 		head=gear.HerculeanHelmMAB,neck="Orunmila's Torque",ear2="Loquacious Earring",
-		body=gear.TaeonBodyFC,hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
+		body=gear.TaeonBodyFC,hands="Mochizuki Tekko +2",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=Andartia.INT,waist="Hurch'lan Sash",legs="Arjuna Breeches",feet=gear.HerculeanBootsTA}
 
 	-- Magic Accuracy Focus 
@@ -239,7 +241,7 @@ function init_gear_sets()
 	-- Idle Sets
 	----------------------------------
 	sets.idle = {ammo="Seki Shuriken",
-		head="Adhemar Bonnet",neck="Sanctity Necklace",ear1="Impregnable Earring",ear2="Etiolation Earring",
+		head="Adhemar Bonnet +1",neck="Sanctity Necklace",ear1="Impregnable Earring",ear2="Etiolation Earring",
 		body="Hizamaru Haramaki +2",hands=gear.HerculeanHandsTA,ring1="Defending Ring",ring2="Paguroidea Ring",
 		back="Shadow Mantle",waist="Flume Belt",legs="Hachiya Hakama +3",feet=gear.MovementFeet}
 
@@ -255,12 +257,12 @@ function init_gear_sets()
 	-- 37% MDT + Absorb + Nullification
     sets.defense.MDT = {ammo="Staunch Tathlum",
 		head=gear.HerculeanHeadDT,neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Etiolation Earring",
-		body="Kendatsuba Samue",hands="Umuthi Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Kendatsuba Samue +1",hands="Umuthi Gloves",ring1="Defending Ring",ring2="Shadow Ring",
 		back="Engulfer Cape +1",waist="Flume Belt",legs="Mummu Kecks +2",feet="Amm Greaves"}
 		
 	sets.MEva = {ammo="Staunch Tathlum",
-		head="Mummu Bonnet +1",neck="Warder's Charm +1",ear1="Eabani Earring",ear2="Flashward Earring",
-		body="Kendatsuba Samue",hands="Leyline Gloves",ring1="Vengeful Ring",ring2="Purity Ring",
+		head="Mummu Bonnet +2",neck="Warder's Charm +1",ear1="Eabani Earring",ear2="Flashward Earring",
+		body="Kendatsuba Samue +1",hands="Leyline Gloves",ring1="Vengeful Ring",ring2="Purity Ring",
 		back=Andartia.MEva,waist="Flume Belt",legs="Mummu Kecks +2",feet="Mummu Gamashes +1"}
 	
 	sets.Resist = set_combine(sets.MEva, {ear2="Hearty Earring",})
@@ -272,21 +274,26 @@ function init_gear_sets()
 	----------------------------------
 	-- Engaged Sets (No Haste)
 	----------------------------------
-	-- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous
+	-- Variations for TP weapon and (optional) offense/deafense modes.  Code will fall back on previous
 	-- sets if more refined versions aren't defined.
 	-- If you create a set with both offense and defense modes, the offense mode should be first.
 	-- EG: sets.engaged.Dagger.Accuracy.Evasion
 
 	-- Acc 1177/1152 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1218/1181 (Heishi/Shigi|Kikoku/Shigi)
-	-- DW Total in Gear: 37 DW
+	-- DW Total in Gear: 37 DW / 39 DW Needed to Cap Delay Reduction
 	sets.engaged = {ammo="Seki Shuriken",
 		head="Ryuo Somen",neck="Moonbeam Nodowa",ear1="Suppanomimi",ear2="Dedition Earring",
 		body="Adhemar Jacket",hands="Floral Gauntlets",ring1="Petrov Ring",ring2="Epona's Ring",
 		back=Andartia.DEX,waist="Reiki Yotai",legs="Samnuha Tights",feet="Hizamaru Sune-Ate +2"}
 		
 	sets.engaged.Crit = set_combine(sets.engaged, {
-		body="Kendatsuba Samue",
+		body="Kendatsuba Samue +1",ring1="Mummu Ring",
 		legs="Mummu Kecks +2",})
+
+	sets.engaged.Multi = set_combine(sets.engaged, {ammo="Ginsen",
+		head="Adhemar Bonnet +1",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Cessance Earring",
+		body="Kendatsuba Samue +1",hands=gear.HerculeanHandsTA,ring1="Epona's Ring",ring2="Hetairoi Ring",
+		back=Andartia.DA,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.HerculeanBootsTA})
 		
 	-- Acc Tier 1: 1200/1175 (Heishi/Ochu|Kikoku/Ochu) :: Acc 1240/1203 (Heishi/Shigi|Kikoku/Shigi)
 	-- DW Total in Gear: 37 DW
@@ -324,27 +331,29 @@ function init_gear_sets()
     -- MaxHaste Sets (0%DW Needed)
 	----------------------------------
 	-- Acc 1084/1059 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1125/1079 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 0 DW
+	-- DW Total in Gear: 0 DW / 1 DW Needed to Cap Delay Reduction
 	sets.engaged.MaxHaste = {ammo="Seki Shuriken",
-		head="Adhemar Bonnet",neck="Moonbeam Nodowa",ear1="Dedition Earring",ear2="Telos Earring",
-		body="Kendatsuba Samue",hands="Adhemar Wristbands +1",ring1="Petrov Ring",ring2="Epona's Ring",
+		head="Adhemar Bonnet +1",neck="Moonbeam Nodowa",ear1="Dedition Earring",ear2="Telos Earring",
+		body="Kendatsuba Samue +1",hands="Adhemar Wristbands +1",ring1="Petrov Ring",ring2="Epona's Ring",
 		back=Andartia.DEX,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
 	
 	sets.engaged.Crit.MaxHaste = set_combine(sets.engaged.MaxHaste, {
-		head="Mummu Bonnet +1",
-		hands="Mummu Wrists +2",
+		head="Mummu Bonnet +2",
+		hands="Mummu Wrists +2",ring1="Mummu Ring",
 		legs="Mummu Kecks +2",feet="Mummu Gamashes +1",})
 	
+	sets.engaged.Multi.MaxHaste = sets.engaged.Multi
+		
 	-- Acc 1105/1080 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1146/1100 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
 	-- DW Total in Gear: 0 DW
 	sets.engaged.Acc.MaxHaste = set_combine(sets.engaged.MaxHaste, {ammo="Seki Shuriken", neck="Moonbeam Nodowa",ear1="Dignitary's Earring",})
 	
 	-- Acc 1151/1126 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1192/1146 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 5 DW
-	sets.engaged.Acc2.MaxHaste = set_combine(sets.engaged.Acc.MaxHaste, {head="Mummu Bonnet +1",ear1="Zennaroi Earring",ring1="Patricius Ring",body="Adhemar Jacket",})
+	-- DW Total in Gear: 5 DW / 1 DW Needed to Cap Delay Reduction
+	sets.engaged.Acc2.MaxHaste = set_combine(sets.engaged.Acc.MaxHaste, {head="Mummu Bonnet +2",ear1="Zennaroi Earring",ring1="Patricius Ring",body="Adhemar Jacket",})
 	
 	-- Acc 1211/1188 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1252/1208 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 5 DW
+	-- DW Total in Gear: 5 DW / 1 DW Needed to Cap Delay Reduction
 	sets.engaged.Acc3.MaxHaste = set_combine(sets.engaged.Acc2.MaxHaste, {neck="Moonbeam Nodowa",hands="Ryuo Tekko",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hizamaru Hizayoroi +2"})
 	
 	sets.engaged.Innin.MaxHaste     = sets.engaged.MaxHaste
@@ -366,24 +375,26 @@ function init_gear_sets()
     -- 35% Haste (~10-12%DW Needed)
 	----------------------------------
 	-- Acc 1095/1070 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1136/1099 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 12 DW
+	-- DW Total in Gear: 12 DW / 12 DW Needed to Cap Delay Reduction
 	sets.engaged.Haste_35 = set_combine(sets.engaged.MaxHaste, {waist="Reiki Yotai",ear1="Suppanomimi",})
 	
 	sets.engaged.Crit.Haste_35 = set_combine(sets.engaged, {
-		body="Kendatsuba Samue",
+		body="Kendatsuba Samue +1",ring1="Mummu Ring",
 		legs="Mummu Kecks +2",})
 	
+	sets.engaged.Multi.Haste_35 = sets.engaged.Multi
+
 	-- Acc 1127/1102 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1168/1122 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 12 DW
+	-- DW Total in Gear: 12 DW / 12 DW Needed to Cap Delay Reduction
 	sets.engaged.Acc.Haste_35 = set_combine(sets.engaged.Acc.MaxHaste, {body="Adhemar Jacket",waist="Reiki Yotai",ear1="Brutal Earring",})
 	
 	-- Acc 1159/1134 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1200/1154 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 12 DW
+	-- DW Total in Gear: 12 DW / 12 DW Needed to Cap Delay Reduction
 	sets.engaged.Acc2.Haste_35 = set_combine(sets.engaged.Acc2.MaxHaste, {waist="Reiki Yotai"})
 	
 	-- Acc 1217/1192 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1258/1212 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 13 DW
-	sets.engaged.Acc3.Haste_35 = set_combine(sets.engaged.Acc3.MaxHaste, {head="Ryuo Somen"})
+	-- DW Total in Gear: 20 DW / 12 DW Needed to Cap Delay Reduction
+	sets.engaged.Acc3.Haste_35 = set_combine(sets.engaged.Acc3.MaxHaste, {head="Ryuo Somen",waist="Olseni Belt"})
 
 	sets.engaged.Innin.Haste_35 	= sets.engaged.Haste_35
 	sets.engaged.Innin.Acc.Haste_35 = sets.engaged.Acc.Haste_35
@@ -404,15 +415,17 @@ function init_gear_sets()
     -- 30% Haste (~21-22%DW Needed)
 	----------------------------------
 	-- Acc  (Heishi/Ochu|Kikoku/Ochu)) :: Acc  (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 20 DW
+	-- DW Total in Gear: 20 DW / 21 DW Needed to Cap Delay Reduction
 	sets.engaged.Haste_30 = {ammo="Seki Shuriken",
 		head="Ryuo Somen",neck="Moonbeam Nodowa",ear1="Brutal Earring",ear2="Cessance Earring",
 		body="Adhemar Jacket",hands="Adhemar Wristbands +1",ring1="Petrov Ring",ring2="Epona's Ring",
 		back=Andartia.DEX,waist="Reiki Yotai",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
 	
 	sets.engaged.Crit.Haste_30 = set_combine(sets.engaged, {
-		body="Kendatsuba Samue",
-		legs="Mummu Kecks +2",})	
+		body="Kendatsuba Samue +1",ring1="Mummu Ring",
+		legs="Mummu Kecks +2",})
+
+	sets.engaged.Multi.Haste_35 = sets.engaged.Multi
 
 	sets.engaged.Acc.Haste_30 = set_combine(sets.engaged.Haste_30, {neck="Moonbeam Nodowa",ring1="Patricius Ring"})
 
@@ -439,27 +452,32 @@ function init_gear_sets()
 	-- 15% Haste (~32%DW Needed)
 	----------------------------------
 	-- Acc 1145/1120 (Heishi/Ochu|Kikoku/Ochu)) :: Acc 1186/1140 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 32 DW
+	-- DW Total in Gear: 32 DW / 32 DW Needed to Cap Delay Reduction
 	sets.engaged.Haste_15 = {ammo="Seki Shuriken",
 		head="Ryuo Somen",neck="Moonbeam Nodowa",ear1="Suppanomimi",ear2="Cessance Earring",
 		body="Adhemar Jacket",hands="Adhemar Wristbands +1",ring1="Petrov Ring",ring2="Epona's Ring",
 		back=Andartia.DEX,waist="Reiki Yotai",legs="Samnuha Tights",feet="Hizamaru Sune-Ate +2"}
 
 	sets.engaged.Crit.Haste_15 = set_combine(sets.engaged, {
-		body="Kendatsuba Samue",
+		body="Kendatsuba Samue +1",ring1="Mummu Ring",
 		legs="Mummu Kecks +2",})
+		
+	sets.engaged.Multi.Haste_15 = sets.engaged.Multi
 
 	-- Acc Tier 1: 1166/1141 (Heishi/Ochu|Kikoku/Ochu) :: Acc 1207/1161 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 32 DW
+	-- DW Total in Gear: 32 DW / 32 DW Needed to Cap Delay Reduction
 	sets.engaged.Acc.Haste_15 = set_combine(sets.engaged.Haste_15, {neck="Moonbeam Nodowa",ear2="Zennaroi Earring"})
 
 	-- Acc Tier 2: 1183/1158 (Heishi/Ochu|Kikoku/Ochu) :: Acc 1224/1178 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 32 DW
+	-- DW Total in Gear: 32 DW / 32 DW Needed to Cap Delay Reduction
 	sets.engaged.Acc2.Haste_15 = set_combine(sets.engaged.Acc.Haste_15, {ring1="Patricius Ring",legs="Hizamaru Hizayoroi +2"})
 	
 	-- Acc Tier 3: 1223/1198 (Heishi/Ochu|Kikoku/Ochu) :: Acc 1264/1218 (Heishi/Shigi|Kikoku/Shigi) :: Acc ??? (Heishi/Kanaria)
-	-- DW Total in Gear: 20 DW
-	sets.engaged.Acc3.Haste_15 = set_combine(sets.engaged.Acc2.Haste_15, {ear1="Cessance Earring",hands="Ryuo Tekko",ring2="Ramuh Ring",waist="Olseni Belt"})
+	-- DW Total in Gear: 20 DW / 32 DW Needed to Cap Delay Reduction
+	sets.engaged.Acc3.Haste_15 = set_combine(sets.engaged.Acc2.Haste_15, {
+		ear1="Cessance Earring",
+		hands="Ryuo Tekko",ring2="Ramuh Ring",
+		waist="Olseni Belt"})
     
 	sets.engaged.Innin.Haste_15 = sets.engaged.Haste_15
 	sets.engaged.Innin.Acc.Haste_15 = sets.engaged.Acc.Haste_15
@@ -489,14 +507,14 @@ function init_gear_sets()
 	-- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 	sets.precast.WS['Blade: Hi'] = set_combine(sets.precast.WS, {ammo="Yetshila",
 		head="Hachiya Hatsuburi +3",neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
-		body="Kendatsuba Samue",hands="Ryuo Tekko",ring1="Ilabrat Ring",ring2="Begrudging Ring",
+		body="Kendatsuba Samue +1",hands="Ryuo Tekko",ring1="Ilabrat Ring",ring2="Begrudging Ring",
 		back=Andartia.STR,waist="Windbuffet Belt +1",legs="Kendatsuba Hakama",feet=gear.HerculeanBootsTA})
 	sets.precast.WS['Blade: Hi'].Acc = set_combine(sets.precast.WS['Blade: Hi'], {waist="Fotia Belt"})
 
 	sets.precast.WS['Blade: Ten'] = set_combine(sets.precast.WS, {ammo="Seething Bomblet +1",
-	head="Hachiya Hatsuburi +3",neck="Caro Necklace",ear1="Ishvara Earring",ear2="Moonshade Earring",
-	body=gear.HerculeanBodyWS,hands=gear.HerculeanHandsWS,ring1="Regal Ring",ring2="Ilabrat Ring",
-	back=Andartia.STR,waist="Grunfeld Rope",legs="Hizamaru Hizayoroi +2",feet=gear.HerculeanFeetWS})
+		head="Hachiya Hatsuburi +3",neck="Caro Necklace",ear1="Ishvara Earring",ear2="Moonshade Earring",
+		body=gear.HerculeanBodyWS,hands=gear.HerculeanHandsWS,ring1="Regal Ring",ring2="Ilabrat Ring",
+		back=Andartia.STR,waist="Grunfeld Rope",legs="Hizamaru Hizayoroi +2",feet=gear.HerculeanFeetWS})
 	sets.precast.WS['Blade: Ku'] = set_combine(sets.precast.WS['Blade: Shun'], {})
 	sets.precast.WS['Blade: Jin'] = set_combine(sets.precast.WS, {ammo="Jukukik Feather",ring1="Regal Ring",back="Andartia's Mantle"})
 	
@@ -510,8 +528,8 @@ function init_gear_sets()
 	sets.precast.WS['Blade: Metsu'].Acc = set_combine(sets.precast.WS['Blade: Metsu'], {waist="Fotia Belt"})
 	
 	sets.precast.WS['Blade: Shun'] = set_combine(sets.precast.WS, {ammo="Jukukik Feather",
-		head="Hachiya Hatsuburi +3",neck="Fotia Gorget",ear1="Moonshade Earring", ear2="Cessance Earring",
-		body="Adhemar Jacket",hands="Adhemar Wristbands +1",ring1="Regal Ring",ring2="Ilabrat Ring",
+		head="Adhemar Bonnet +1",neck="Fotia Gorget",ear1="Moonshade Earring", ear2="Cessance Earring",
+		body="Kendatsuba Samue +1",hands="Adhemar Wristbands +1",ring1="Regal Ring",ring2="Ilabrat Ring",
 		back=Andartia.DEX,waist="Fotia Belt", legs="Samnuha Tights", feet=gear.HerculeanBootsTA})
 	
 	sets.precast.WS['Blade: Yu'] = {ammo="Pemphredo Tathlum",
@@ -527,8 +545,8 @@ function init_gear_sets()
 		waist="Fotia Belt",legs="Hiza. Hizayoroi +2",feet=gear.HerculeanFeetWS})
 	
 	sets.precast.WS['Aeolian Edge'] = sets.precast.WS['Blade: Yu']
-	sets.precast.WS['Evisceration'] = set_combine(sets.precast.WS['Blade: Hi'], {head="Mummu Bonnet +1",
-		body="Kendatsuba Samue",
+	sets.precast.WS['Evisceration'] = set_combine(sets.precast.WS['Blade: Hi'], {head="Mummu Bonnet +2",
+		body="Kendatsuba Samue +1",
 		back=Andartia.DEX,})
 	
 	sets.precast.WS['Tachi: Ageha'] = set_combine(sets.precast.WS,{})
@@ -659,21 +677,19 @@ end
 -- Called before the Include starts constructing melee/idle/resting sets.
 -- Can customize state or custom melee class values at this point.
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
-function job_handle_equipping_gear(playerStatus, eventArgs)    	
-	if player.equipment.back == 'Mecisto. Mantle' or player.equipment.back == 'Aptitude Mantle' or player.equipment.back == 'Aptitude Mantle +1' or player.equipment.back == 'Nexus Cape' then
-		disable('back')
-	else
-		enable('back')
-	end
-	if player.equipment.ring1 == 'Warp Ring' or player.equipment.ring1 == 'Vocation Ring' or player.equipment.ring1 == 'Capacity Ring' or player.equipment.ring1 == 'Echad Ring' or player.equipment.ring1 == 'Trizek Ring' then
-		disable('ring1')
-	else
-		enable('ring1')
-	end
-	if player.equipment.ring2 == 'Warp Ring' or player.equipment.ring2 == 'Vocation Ring' or player.equipment.ring2 == 'Capacity Ring'  or player.equipment.ring2 == 'Echad Ring' or player.equipment.ring2 == 'Trizek Ring' then
-		disable('ring2')
-	else
-		enable('ring2')
+function job_handle_equipping_gear(playerStatus, eventArgs)
+	local lockables = T{'Mecisto. Mantle', 'Aptitude Mantle', 'Nexus Cape', 'Aptitude Mantle +1', 'Warp Ring', 'Vocation Ring', 'Reraise Earring', 'Capacity Ring', 'Trizek Ring', 'Echad Ring', 'Facility Ring', 'Dim. Ring (Holla)', 'Dim. Ring (Dem)', 'Dim. Ring (Mea)'}
+	local watch_slots = T{'lear','rear','ring1','ring2','back','head'}
+
+	for _,v in pairs(watch_slots) do
+		if lockables:contains(player.equipment[v]) then
+			disable(v)
+			if has_charges(player.equipment[v]) and (not is_enchant_ready(player.equipment[v])) then
+				enable(v)
+			end
+		else
+			enable(v)
+		end
 	end
 end
 
@@ -822,9 +838,15 @@ function determine_haste_group()
 			h = h + 30
 		end
 	end
-	-- Geo Haste 30
+	-- Geo Haste 20/35/40 (assunes dunna and idris have 900 skill)
 	if buffactive[580] then
-		h = h + 30
+		if state.GeoMode.value == 'Cornelia' then
+			h = h + 20
+		elseif state.HasteMode.value == 'Dunna' then
+			h = h + 35.4
+		elseif state.GeoMode.value == 'Idris' then
+			h = h + 40
+		end
 	end
 	-- Mighty Guard 15
 	if buffactive[604] then
