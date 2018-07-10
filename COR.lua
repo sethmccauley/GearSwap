@@ -44,8 +44,10 @@ function user_setup()
 	state.IdleMode:options('Normal', 'PDT', 'Mage')
 
 	state.HasteMode = M{['description']='Haste Mode', 'Haste I', 'Haste II'}
-	--include('Mote-TreasureHunter')
-	--state.TreasureMode:set('Tag')
+	state.MarchMode = M{['description']='March Mode', 'Trusts', '3', '7', 'Honor'}
+	state.GeoMode = M{['description']='Geo Haste', 'Dunna', 'Idris'}
+	include('Mote-TreasureHunter')
+	state.TreasureMode:set('Tag')
 	
 	gear.RAbullet = "Chrono Bullet"
 	gear.WSbullet = "Chrono Bullet"
@@ -82,12 +84,13 @@ function init_gear_sets()
 	Camulus.MAtk = {name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','Weapon skill damage +10%','AGI+10'}}
 	Camulus.RAcc = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10',}}
 	Camulus.Snap = {name="Camulus's Mantle", augments={'"Snapshot"+10',}}
-	Camulus.DA = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Occ. inc. resist. to stat. ailments+10'}}
+	Camulus.DW = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Occ. inc. resist. to stat. ailments+10'}}
+	Camulus.STR = {name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','STR+10'}}
 	
 	-- Precast Sets
 
 	-- Precast sets to enhance JAs
-	sets.TreasureHunter = { head="White Rarab Cap +1", body=gear.HerculeanBodyTH, hands=gear.HerculeanHandsTH, waist="Chaac Belt" }
+	sets.TreasureHunter = { head="White Rarab Cap +1", body=gear.HerculeanBodyTH, hands="Volte Bracers", waist="Chaac Belt" }
 	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +1"}
 	sets.precast.JA['Snake Eye'] = {legs="Lanun Culottes"}
 	sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"}
@@ -142,8 +145,7 @@ function init_gear_sets()
 		body="Laksa. Frac +3"})
 	
 	sets.precast.RA.FlurryII = set_combine(sets.precast.RA.Flurry, {
-	legs="Pursuer's Pants"
-	})
+		legs="Pursuer's Pants"})
        
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
@@ -161,8 +163,8 @@ function init_gear_sets()
 	sets.precast.WS['Exenterator'] = set_combine(sets.precast.WS, {legs="Nahtirah Trousers"})
 	sets.precast.WS['Savage Blade'] = {ammo=gear.WSbullet,
 		head=gear.HerculeanHeadWS,neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
-		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Epona's Ring",ring2="Regal Ring",
-		back=Camulus.MAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet=gear.HerculeanFeetWS}
+		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Shukuyu Ring",ring2="Regal Ring",
+		back=Camulus.STR,waist="Metalsinger Belt",legs="Meghanada Chausses +2",feet="Lanun Bottes +3"}
 	sets.precast.WS['Requiescat'] = set_combine(sets.precast.WS, {})
 
 	sets.precast.WS['Last Stand'] = {ammo=gear.WSbullet,
@@ -170,19 +172,19 @@ function init_gear_sets()
 		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
 		back=Camulus.MAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Lanun Bottes +3"}
 	sets.precast.WS['Last Stand'].Acc = {ammo=gear.WSbullet,
-		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
-		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
-		back=Camulus.RAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Lanun Bottes +3"}
+		head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Telos Earring",ear2="Enervating Earring",
+		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Cacoethic Ring +1",ring2="Regal Ring",
+		back=Camulus.RAtk,waist="Kwahu Kachina Belt",legs="Meghanada Chausses +2",feet="Meghanada Jambeaux +2"}
 	sets.precast.WS['Split Shot'] = set_combine(sets.precast.WS['Last Stand'], {})
 	
 	sets.precast.WS['Detonator'] = {ammo=gear.WSbullet,
-		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Enervating Earring",ear2="Moonshade Earring",
-		body="Meghanada Cuirie +1",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
-		back=Camulus.RAcc,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Meghanada Jambeaux +2"}
+		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
+		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
+		back=Camulus.MAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Lanun Bottes +3"}
 	sets.precast.WS['Detonator'].Acc = {ammo=gear.WSbullet,
-		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Enervating Earring",ear2="Moonshade Earring",
-		body="Meghanada Cuirie +1",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
-		back=Camulus.RAcc,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Meghanada Jambeaux +2"}
+		head="Meghanada Visor +2",neck="Fotia Gorget",ear1="Ishvara Earring",ear2="Moonshade Earring",
+		body="Laksa. Frac +3",hands="Meghanada Gloves +2",ring1="Dingir Ring",ring2="Regal Ring",
+		back=Camulus.MAtk,waist="Fotia Belt",legs="Meghanada Chausses +2",feet="Lanun Bottes +3"}
 
 	sets.precast.WS['Wildfire'] = {ammo=gear.MAbullet,
 		head=gear.HerculeanHelmMAB,neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Hecate's Earring",
@@ -230,16 +232,15 @@ function init_gear_sets()
 
 	sets.midcast.CorsairShot['Light Shot'] = {ammo=gear.QDbullet,
 		head="Oshosi Mask",neck="Sanctity Necklace",ear1="Gwati Earring",ear2="Dignitary's Earring",
-		body="Mummu Jacket +2",hands="Mummu Wrists +1",ring1="Weatherspoon Ring",ring2="Sangoma Ring",
-		back=Camulus.MAtk,waist="Eschan Stone",legs="Mummu Kecks +2",feet="Mummu Gamashes +1"}
+		body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Weatherspoon Ring",ring2="Sangoma Ring",
+		back=Camulus.MAtk,waist="Eschan Stone",legs="Mummu Kecks +2",feet="Mummu Gamashes +2"}
 
 	sets.midcast.CorsairShot['Dark Shot'] = sets.midcast.CorsairShot['Light Shot']
-
 
 	-- Ranged gear
 	sets.midcast.RA = {ammo=gear.RAbullet,
 		head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
-		body="Laksa. Frac +3",hands="Adhemar Wristbands",ring1="Regal Ring",ring2="Ilabrat Ring",
+		body="Laksa. Frac +3",hands="Lanun Gants +3",ring1="Regal Ring",ring2="Ilabrat Ring",
 		back=Camulus.RAcc,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meghanada Jambeaux +2"}
 		
 	sets.midcast.RA.Triple = set_combine(sets.midcast.RA, {
@@ -263,17 +264,22 @@ function init_gear_sets()
 	sets.idle = {main="",ammo=gear.RAbullet,
 		head="Lanun Tricorne +1",neck="Sanctity Necklace",ear1="Genmei Earring",ear2="Etiolation Earring",
 		body="Mekosuchinae Harness",hands=gear.HerculeanHandsRefresh,ring1="Defending Ring",ring2="Roller's Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs=gear.HerculeanLegsRefresh,feet=gear.HerculeanBootsDT}
+		back="Moonbeam Cape",waist="Flume Belt",legs=gear.HerculeanLegsRefresh,feet=gear.HerculeanBootsDT}
+	
+	sets.idle.Regen = {
+		head="Meghanada Visor +2",
+		body="Meghanada Cuirie +2",hands="Meghanada Gloves +2",
+		legs="Meghanada Chausses +2",feet="Meghanada Jambeaux +2",}
 		
 	sets.idle.Mage = {main="",ammo=gear.RAbullet,
 		head="Lanun Tricorne +1",neck="Sanctity Necklace",ear1="Genmei Earring",ear2="Etiolation Earring",
 		body="Mekosuchinae Harness",hands=gear.HerculeanHandsRefresh,ring1="Defending Ring",ring2="Paguroidea Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs=gear.HerculeanLegsRefresh,feet=gear.HerculeanBootsDT}
+		back="Moonbeam Cape",waist="Flume Belt",legs=gear.HerculeanLegsRefresh,feet=gear.HerculeanBootsDT}
 		
 	sets.idle.Town = {main="",ammo=gear.RAbullet,
 		head="Lanun Tricorne +1",neck="Sanctity Necklace",ear1="Genmei Earring",ear2="Etiolation Earring",
 		body="Mekosuchinae Harness",hands=gear.HerculeanHandsRefresh,ring1="Defending Ring",ring2="Roller's Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.HerculeanBootsDT}
+		back="Moonbeam Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.HerculeanBootsDT}
     
 	-- Defense sets
 	sets.defense.PDT = {
@@ -311,27 +317,38 @@ function init_gear_sets()
 	sets.engaged.Melee = {ammo=gear.RAbullet,
 		head="Adhemar Bonnet +1",neck="Iskur Gorget",ear1="Telos Earring",ear2="Suppanomimi",
 		body="Adhemar Jacket +1",hands="Adhemar Wristbands +1",ring1="Hetairoi Ring",ring2="Epona's Ring",
-		back=Camulus.DA,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
+		back=Camulus.DW,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
+	sets.engaged.Melee.Haste_30 = set_combine(sets.engaged.Melee, {})
+	sets.engaged.Melee.MaxHaste = set_combine(sets.engaged.Melee.Haste_30, {})
 	
 	sets.engaged.Acc = {ammo=gear.RAbullet,
-		head="Mummu Bonnet +1",neck="Ej Necklace",ear1="Telos Earring",ear2="Cessance Earring",
-		body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Cacoethic Ring +1",ring2="Ramuh Ring",
-		back=Camulus.DA,waist="Reiki Yotai",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
-
-	sets.engaged.Melee.DW = {ammo=gear.RAbullet,
-		head="Adhemar Bonnet +1",neck="Ainia Collar",ear1="Telos Earring",ear2="Suppanomimi",
-		body="Adhemar Jacket +1",hands="Adhemar Wristbands +1",ring1="Ilabrat Ring",ring2="Epona's Ring",
-		back=Camulus.DA,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
+		head="Mummu Bonnet +2",neck="Ej Necklace",ear1="Telos Earring",ear2="Cessance Earring",
+		body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Cacoethic Ring +1",ring2="Cacoethic Ring",
+		back=Camulus.DW,waist="Olseni Belt",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
+	sets.engaged.Acc.Haste_30 = set_combine(sets.engaged.Acc, {})
+	sets.engaged.Acc.MaxHaste = set_combine(sets.engaged.Acc.Haste_30, {})
 	
-	sets.engaged.Acc.DW = {ammo=gear.RAbullet,
-		head="Mummu Bonnet +1",neck="Ej Necklace",ear1="Telos Earring",ear2="Cessance Earring",
-		body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Cacoethic Ring +1",ring2="Ramuh Ring",
-		back=Camulus.DA,waist="Olseni Belt",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
-
-	sets.engaged.Ranged = {ammo=gear.RAbullet,
-		head="Whirlpool Mask",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Volley Earring",
-		body=gear.HerculeanVestAcc,hands="Iuitl Wristbands",ring1="Dark Ring",ring2="Dark Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs="Nahtirah Trousers",feet=gear.HerculeanBootsTA}
+	sets.engaged.DW = {}
+	-- Melee Acc 1121/1121 base --
+	sets.engaged.DW.Melee = {ammo=gear.RAbullet,
+		head="Adhemar Bonnet +1",neck="Ainia Collar",ear1="Telos Earring",ear2="Suppanomimi",
+		body="Adhemar Jacket +1",hands="Floral Gauntlets",ring1="Hetairoi Ring",ring2="Epona's Ring",
+		back=Camulus.DW,waist="Reiki Yotai",legs="Samnuha Tights",feet=gear.HerculeanBootsTA}
+	-- 25% DW in Traits Needs ~31 DW in gear --
+	sets.engaged.DW.Melee.Haste_30 = set_combine(sets.engaged.DW.Melee, {})
+	-- 25% DW in Traits Needs 11 DW in gear --
+	sets.engaged.DW.Melee.MaxHaste = set_combine(sets.engaged.DW.Melee.Haste_30, {
+		ear2="Cessance Earring",
+		body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Mummu Ring",
+		waist="Windbuffet Belt +1"})
+	
+	-- Melee Acc 1264/1264 base --
+	sets.engaged.DW.Acc = {ammo=gear.RAbullet,
+		head="Mummu Bonnet +2",neck="Ej Necklace",ear1="Telos Earring",ear2="Cessance Earring",
+		body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Cacoethic Ring +1",ring2="Mummu Ring",
+		back=Camulus.DW,waist="Olseni Belt",legs="Mummu Kecks +2",feet="Mummu Gamashes +2"}
+	sets.engaged.DW.Acc.Haste_30 = set_combine(sets.engaged.DW.Acc, {})
+	sets.engaged.DW.Acc.MaxHaste = set_combine(sets.engaged.DW.Acc.Haste_30, {})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -397,7 +414,10 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Modify the default idle set after it was constructed.
 function customize_idle_set(idleSet)
-    return idleSet
+	if player.sub_job == "NIN" then
+		idleSet = set_combine(sets.idle, sets.idle.Regen)
+	end
+	return idleSet
 end
  
 -- Modify the default melee set after it was constructed.
@@ -407,29 +427,115 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
-
--- Return a customized weaponskill mode to use for weaponskill sets.
--- Don't return anything if you're not overriding the default value.
-function get_custom_wsmode(spell, spellMap, default_wsmode)
-    if buffactive['Transcendancy'] then
-        return 'Brew'
-    end
-end
-
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    if newStatus == 'Engaged' and player.equipment.main == 'Chatoyant Staff' then
-        state.OffenseMode:set('Ranged')
-    end
+	update_combat_form()
+	determine_haste_group()
 end
 
 function job_buff_change(buff, gain)
-
+	if state.Buff[buff] ~= nil then
+		state.Buff[buff] = gain
+	end
+	if S{'haste', 'march', 'mighty guard', 'embrava', 'haste samba', 'geo-haste', 'indi-haste'}:contains(buff:lower()) then
+		determine_haste_group()
+		if not midaction() then
+			handle_equipping_gear(player.status)
+		end
+	end
 end
 
 function update_melee_groups()
 
+end
+
+function determine_haste_group()
+   
+	classes.CustomMeleeGroups:clear()
+	h = 0
+	-- Spell Haste 15/30
+	if buffactive[33] then
+		if state.HasteMode.value == 'Haste I' then
+			h = h + 15
+		elseif state.HasteMode.value == 'Haste II' then
+			h = h + 30
+		end
+	end
+	-- Geo Haste 20/35/40
+	if buffactive[580] then
+		if state.GeoMode.value == 'Cornelia' then
+			h = h + 20
+		elseif state.HasteMode.value == 'Dunna' then
+			h = h + 35.4
+		elseif state.GeoMode.value == 'Idris' then
+			h = h + 40
+		end
+	end
+	-- Mighty Guard 15
+	if buffactive[604] then
+		h = h + 15
+	end
+	-- Embrava 15
+	if buffactive.embrava then
+		h = h + 21
+	end
+	-- March(es) 
+	if buffactive.march then
+		if state.MarchMode.value == 'Honor' then
+			if buffactive.march == 2 then
+				h = h + 27 + 16
+			elseif buffactive.march == 1 then
+				h = h + 16
+			elseif buffactive.march == 3 then
+				h = h + 27 + 17 + 16
+			end
+		elseif state.MarchMode.value == 'Trusts' then
+			if buffactive.march == 2 then
+				h = h + 26
+			elseif buffactive.march == 1 then
+				h = h + 16
+			elseif buffactive.march == 3 then
+				h = h + 27 + 17 + 16
+			end
+		elseif state.MarchMode.value == '7' then
+			if buffactive.march == 2 then
+				h = h + 27 + 17
+			elseif buffactive.march == 1 then
+				h = h + 27
+			elseif buffactive.march == 3 then
+				h = h + 27 + 17 + 16
+			end
+		elseif state.MarchMode.value == '3' then
+			if buffactive.march == 2 then
+				h = h + 13.5 + 20.6
+			elseif buffactive.march == 1 then
+				h = h + 20.6
+			elseif buffactive.march == 3 then
+				h = h + 27 + 17 + 16
+			end
+		end
+	end
+
+	-- Determine CustomMeleeGroups
+	if h >= 15 and h < 30 then
+		add_to_chat('Haste Group: 15%-30% -- From Haste Total: '..h)
+	elseif h >= 30 and h < 40 then 
+		classes.CustomMeleeGroups:append('Haste_30')
+		add_to_chat('Haste Group: 30%-40% -- From Haste Total: '..h)
+	elseif h >= 40 then
+		classes.CustomMeleeGroups:append('MaxHaste')
+		add_to_chat('Haste Group: Max -- From Haste Total: '..h)
+	end
+end
+
+function update_combat_form()
+	-- Check for single-wielding
+	if player.equipment.sub == "Nusku Shield" then
+		state.CombatForm:reset()
+	else
+		state.CombatForm:set('DW')
+	end
 end
 
 function job_handle_equipping_gear(playerStatus, eventArgs)
@@ -448,33 +554,32 @@ function job_handle_equipping_gear(playerStatus, eventArgs)
 	end
 end
 
-
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
 function display_current_job_state(eventArgs)
-    local msg = ''
+	local msg = ''
     
-    msg = msg .. 'Off.: '..state.OffenseMode.current
-    msg = msg .. ', Rng.: '..state.RangedMode.current
-    msg = msg .. ', WS.: '..state.WeaponskillMode.current
-    msg = msg .. ', QD.: '..state.CastingMode.current
+	msg = msg .. 'Off.: '..state.OffenseMode.current
+	msg = msg .. ', Rng.: '..state.RangedMode.current
+	msg = msg .. ', WS.: '..state.WeaponskillMode.current
+	msg = msg .. ', QD.: '..state.CastingMode.current
 	msg = msg .. ', QD. STP: '..state.QDMode.current
 
-    if state.DefenseMode.value ~= 'None' then
-        local defMode = state[state.DefenseMode.value ..'DefenseMode'].current
-        msg = msg .. ', Defense: '..state.DefenseMode.value..' '..defMode
-    end
-    
-    if state.Kiting.value then
-        msg = msg .. ', Kiting'
-    end
-    
-    if state.PCTargetMode.value ~= 'default' then
-        msg = msg .. ', Target PC: '..state.PCTargetMode.value
-    end
+	if state.DefenseMode.value ~= 'None' then
+			local defMode = state[state.DefenseMode.value ..'DefenseMode'].current
+			msg = msg .. ', Defense: '..state.DefenseMode.value..' '..defMode
+	end
+	
+	if state.Kiting.value then
+			msg = msg .. ', Kiting'
+	end
+	
+	if state.PCTargetMode.value ~= 'default' then
+			msg = msg .. ', Target PC: '..state.PCTargetMode.value
+	end
 
-    if state.SelectNPCTargets.value then
-        msg = msg .. ', Target NPCs'
-    end
+	if state.SelectNPCTargets.value then
+			msg = msg .. ', Target NPCs'
+	end
 
     --msg = msg .. ', Roll Size: ' .. (state.LuzafRing.value and 'Large') or 'Small'
     
