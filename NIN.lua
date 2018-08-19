@@ -645,7 +645,7 @@ function customize_melee_set(meleeSet)
 	end
 	if player.equipment.main == 'Kannagi' then
 		if buffactive['Aftermath: Lv.3'] then
-			meleeSet = set_combin(meleeSet, sets.engaged.Kannagi.AM3)
+			meleeSet = set_combine(meleeSet, sets.engaged.Kannagi.AM3)
 		end
 	end
 	if state.HybridMode.value == 'PDT' then
